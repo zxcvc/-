@@ -1,5 +1,10 @@
-let expr = '(1+2)/2-(2-1)'
-// expr = '1+2/2-1'
+let expr = [
+    '(', '(', '10', '+', '(',
+    '6', '-', '(',  '(', '9',
+    '+', '3', ')',  '*', '-11',
+    ')', ')', ')',  '/', '17',
+    '-', '2', ')',  '+', '5'
+]
 
 Array.prototype.top = function(){
     return this[this.length-1]
@@ -22,34 +27,41 @@ function is_op(str){
 function infix2suffix(expr){
     const stack_op = []
     const stack_expr = []
-    let left_par_num = 0
-    for(let item of expr){
-        if(item === '('){
-            ++left_par_num
+    const stack_left_par = []
+    for(let i = 0; i < expr.length; ++i){
+        if(expr[i] === '('){
+            stack_left_par.push(i)
         }
-        if(is_op(item)){
-            while(whight[item] <= whight[stack_op.top()] && !stack_op.empty() && left_par_num <= 0){
-                stack_expr.push(stack_op.pop())
+        if(is_op(expr[i])){
+            if(stack_left_par.empty()){
+                while(!stack_op.empty() && whight[expr[stack_op.top()]] >= whight[expr[i]]){
+                    stack_expr.push(stack_op.pop())
+                }
+            }else{
+                while(!stack_op.empty() && stack_op.top() > stack_left_par.top()){
+                    stack_expr.push(stack_op.pop())
+                }
             }
-            stack_op.push(item)
+            stack_op.push(i)
         }else{
-            if(item !== '(' && item !== ')'){
-                stack_expr.push(item)
+            if(expr[i] !== '(' && expr[i] !== ')'){
+                stack_expr.push(i)
             }
         }
-        if(item === ')'){
-            while(!stack_op.empty()){
+        if(expr[i] === ')'){
+            while(!stack_op.empty() && stack_op.top() > stack_left_par.top()){
                 stack_expr.push(stack_op.pop())
             }
-            --left_par_num
+            stack_left_par.pop()
         }
     }
     while(!stack_op.empty()){
         stack_expr.push(stack_op.pop())
     }
 
-    return stack_expr.join(' ')
+    return stack_expr.map(v=>expr[v])
 }
 
 
-console.log(infix2suffix(expr))
+let res = infix2suffix(expr)
+console.log(res)
