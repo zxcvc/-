@@ -1,9 +1,5 @@
 let expr = [
-    '(', '(', '10', '+', '(',
-    '6', '-', '(',  '(', '9',
-    '+', '3', ')',  '*', '-11',
-    ')', ')', ')',  '/', '17',
-    '-', '2', ')',  '+', '5'
+    '(','(','10','*','(','6','/','(','(','9','+','3',')','*','-11',')',')',')','+','17',')','+','5'
 ]
 
 Array.prototype.top = function(){
@@ -13,7 +9,7 @@ Array.prototype.empty = function(){
     return this.length <= 0
 }
 
-const whight = {
+const weight = {
     '+':1,
     '-':1,
     '*':2,
@@ -21,7 +17,7 @@ const whight = {
 }
 
 function is_op(str){
-    return !!whight[str]
+    return !!weight[str]
 }
 
 function infix2suffix(expr){
@@ -34,11 +30,11 @@ function infix2suffix(expr){
         }
         if(is_op(expr[i])){
             if(stack_left_par.empty()){
-                while(!stack_op.empty() && whight[expr[stack_op.top()]] >= whight[expr[i]]){
+                while(!stack_op.empty() && weight[expr[stack_op.top()]] >= weight[expr[i]]){
                     stack_expr.push(stack_op.pop())
                 }
             }else{
-                while(!stack_op.empty() && stack_op.top() > stack_left_par.top()){
+                while(!stack_op.empty() && stack_op.top() > stack_left_par.top() && weight[expr[stack_op.top()]] >= weight[expr[i]]){
                     stack_expr.push(stack_op.pop())
                 }
             }
