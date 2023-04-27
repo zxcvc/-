@@ -1,0 +1,7 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function stdlib_sort(arr) {
+    return arr.sort((a, b) => a - b);
+}
+exports.default = stdlib_sort;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RkbGliX3NvcnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvc3RkbGliX3NvcnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxTQUFTLFdBQVcsQ0FBQyxHQUFrQjtJQUN0QyxPQUFPLEdBQUcsQ0FBQyxJQUFJLENBQUMsQ0FBQyxDQUFDLEVBQUUsQ0FBQyxFQUFFLEVBQUUsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUM7QUFDbEMsQ0FBQztBQUVELGtCQUFlLFdBQVcsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImZ1bmN0aW9uIHN0ZGxpYl9zb3J0KGFycjogQXJyYXk8bnVtYmVyPik6IEFycmF5PG51bWJlcj4ge1xuXHRyZXR1cm4gYXJyLnNvcnQoKGEsIGIpID0+IGEgLSBiKTtcbn1cblxuZXhwb3J0IGRlZmF1bHQgc3RkbGliX3NvcnQ7XG4iXX0=
